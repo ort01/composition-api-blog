@@ -2,6 +2,7 @@
   <div class="post-list">
     <div v-for="post in posts" :key="post.id">
       <SinglePost :post="post" />
+      <!-- passing the single post to the singlePost component -->
     </div>
   </div>
 </template>
@@ -21,6 +22,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 </style>

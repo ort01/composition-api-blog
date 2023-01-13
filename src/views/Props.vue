@@ -2,6 +2,7 @@
   <div>
     <h1>Props</h1>
     <PostList :posts="posts" />
+    <!-- passing the prop posts to the component -->
   </div>
 </template>
 
@@ -32,6 +33,5 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
