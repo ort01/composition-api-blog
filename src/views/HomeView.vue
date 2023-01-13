@@ -1,7 +1,10 @@
 <template>
   <div class="home">hello</div>
   <p>My name is {{ name }} and my age is {{ age }}</p>
+  <!-- We don't say name.value here, just name (it automatically shows the value of ref). -->
   <button ref="buttonRef" @click="handleClick">Click me</button>
+  <button @click="reactivRefs">Reactivity refs</button>
+  <input type="text" v-model="name" />
 </template>
 
 <script>
@@ -12,8 +15,8 @@ export default {
   name: "HomeView",
 
   setup() {
-    let name = "John";
-    let age = 30;
+    const name = ref("John");
+    const age = ref(30);
 
     const buttonRef = ref(null); //null is initial value; Getting the DOM element through ref="buttonRef" -> buttonRef= ref(initial value)
 
@@ -22,8 +25,13 @@ export default {
       buttonRef.value.classList.add("active"); //<button class="active">Click me</button>
       buttonRef.value.textContent = "Changed textConent"; //<button>Changed textConent</button>
     };
+    const reactivRefs = () => {
+      // We only use the value property inside the setup function itself because the variable = ref, not VALUE, in the template it automatically uses the value when we use the name of the variable.
+      name.value = "Frank";
+      age.value = 55;
+    };
 
-    return { name, age, handleClick, buttonRef };
+    return { name, age, handleClick, buttonRef, reactivRefs };
   },
 };
 </script>
