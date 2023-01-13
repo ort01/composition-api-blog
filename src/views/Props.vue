@@ -1,8 +1,10 @@
 <template>
   <div>
     <h1>Props</h1>
-    <PostList :posts="posts" />
+    <PostList :posts="posts" v-if="showPosts" />
     <!-- passing the prop posts to the component -->
+    <button @click="showPosts = !showPosts">toggle Posts</button>
+    <button @click="posts.pop()">Delete</button>
   </div>
 </template>
 
@@ -28,7 +30,9 @@ export default {
       },
     ]);
 
-    return { posts };
+    const showPosts = ref(true);
+
+    return { posts, showPosts };
   },
 };
 </script>

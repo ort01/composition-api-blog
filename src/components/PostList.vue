@@ -9,6 +9,7 @@
 
 <script>
 import SinglePost from "./SinglePost.vue";
+import { onMounted, onUnmounted, onUpdated } from "@vue/runtime-core";
 
 export default {
   name: "PostList",
@@ -18,6 +19,14 @@ export default {
   props: ["posts"],
   setup(props) {
     console.log(props.posts);
+    onMounted(() => console.log("component mounted"));
+    onUnmounted(() => console.log("component unmounted"));
+    onUpdated(() => console.log("component updated"));
+    // using lifecycle hooks inside setup() => onMounted
+  },
+  mounted() {
+    //using lifecycle hooks outside setup() => mounted
+    console.log("component monted using options API");
   },
 };
 </script>
