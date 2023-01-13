@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import RefsVSReactive from '../views/RefsVSReactive.vue'
 import Refs from '../views/Refs.vue'
 import ComputedValues from '../views/ComputedValues.vue'
+import Props from '../views/Props.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/computed',
     name: 'ComputedValues',
     component: ComputedValues
+  },
+  {
+    path: '/props',
+    name: 'Props',
+    component: Props
   }
 
 ]
