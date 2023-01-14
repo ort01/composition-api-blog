@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h3>{{ post.title }}</h3>
+    <router-link
+      :to="{ name: 'Details', params: { id: post.id } }"
+      class="h3-link"
+    >
+      <h3>{{ post.title }}</h3>
+    </router-link>
     <p>{{ snippet }}</p>
     <span v-for="tag in post.tags" :key="tag"> #{{ tag }}</span>
   </div>
@@ -25,4 +30,10 @@ export default {
 
 
 <style scoped>
+.h3-link {
+  text-decoration: none;
+}
+.h3-link:visited {
+  color: inherit;
+}
 </style>
