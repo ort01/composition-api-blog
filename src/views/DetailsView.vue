@@ -2,7 +2,8 @@
   <div v-if="error">{{ error }}</div>
   <div v-if="post" class="postdetails">
     <h3>{{ post.title }}</h3>
-    <p class="pre">{{ post.body }}</p>
+    <p>{{ post.body }}</p>
+    <div v-for="tag in post.tags" :key="tag" class="tags">#{{ tag }}</div>
   </div>
   <div v-else>
     <Spinner />
@@ -12,6 +13,7 @@
 <script>
 import getOnePost from "../composables/getOnePost";
 import Spinner from "../components/Spinner.vue";
+import { useRoute } from "vue-router";
 
 export default {
   props: ["id"],
@@ -19,22 +21,47 @@ export default {
     Spinner,
   },
   setup(props) {
-    const { post, error, jsonData } = getOnePost(props.id);
+    const route = useRoute();
+
+    const { post, error, jsonData } = getOnePost(props.id); // (route.params.id)
     jsonData();
     return { post, error };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .postdetails {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 10px;
+  text-align: center;
 }
-.postdetails p {
-  color: #444;
-  line-height: 1.5rem;
-  margin-top: 40px;
+.postdetails h3 {
+  display: inline-block;
+  position: relative;
+  font-size: 30px;
+  color: rgba(68, 68, 68, 0.76);
+  margin-bottom: 30px;
+  max-width: 400px;
+  text-decoration: none;
+}
+.postdetails h3::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgb(233, 211, 219);
+  position: absolute;
+  z-index: -1;
+  padding-right: 40px;
+  left: -30px;
+  transform: rotateZ(-1deg);
+  border-radius: 5px;
+}
+.tags {
+  margin: 30px 10px 10px;
+  display: inline-block;
+  color: rgba(150, 93, 112, 0.484);
+  font-weight: bold;
 }
 </style>

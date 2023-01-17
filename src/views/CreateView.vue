@@ -17,9 +17,12 @@
 
 <script>
 import { ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
+
     const title = ref("");
     const body = ref("");
     const tag = ref("");
@@ -45,6 +48,7 @@ export default {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newPost),
       });
+      router.push({ name: "Home" });
     };
 
     return {
@@ -59,7 +63,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 form {
   max-width: 480px;
   margin: 30px auto;
