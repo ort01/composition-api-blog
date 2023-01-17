@@ -8,6 +8,9 @@ const getOnePost = (id) => {
 
     const jsonData = async () => {
         try {
+            await new Promise(function (resolve, reject) {
+                setTimeout(resolve, 2000)
+            })
             let res = await fetch(`http://localhost:3000/posts/${id}`);
             if (!res.ok) {
                 throw Error("No Data Available");

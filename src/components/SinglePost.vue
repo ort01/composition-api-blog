@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="post">
     <router-link
       :to="{ name: 'Details', params: { id: post.id } }"
       class="h3-link"
@@ -30,10 +30,30 @@ export default {
 
 
 <style scoped>
-.h3-link {
+.post {
+  margin: 0 40px 30px;
+}
+
+.post h3 {
+  display: inline-block;
+  position: relative;
+  font-size: 26px;
+  color: rgba(68, 68, 68, 0.76);
+  margin-bottom: 10px;
+  max-width: 400px;
   text-decoration: none;
 }
-.h3-link:visited {
-  color: inherit;
+.post h3::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgb(233, 211, 219);
+  position: absolute;
+  z-index: -1;
+  padding-right: 40px;
+  left: -30px;
+  transform: rotateZ(-1deg);
+  border-radius: 5px;
 }
 </style>
