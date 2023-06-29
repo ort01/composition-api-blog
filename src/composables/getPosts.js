@@ -10,7 +10,7 @@ const getPosts = () => {
             const res = await projectFirestore.collection('Posts').get()
 
             posts.value = res.docs.map(doc => {
-                console.log(doc.data());
+                // console.log(doc.data());
                 return { ...doc.data(), id: doc.id }
             })
         } catch (err) {
