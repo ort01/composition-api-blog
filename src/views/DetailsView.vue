@@ -1,6 +1,6 @@
 <template>
   <div v-if="error">{{ error }}</div>
-  <div v-if="post" class="postdetails">
+  <div v-if="post" class="post-details">
     <h3>{{ post.title }}</h3>
     <p>{{ post.body }}</p>
     <div v-for="tag in post.tags" :key="tag" class="tags">#{{ tag }}</div>
@@ -31,12 +31,12 @@ export default {
 </script>
 
 <style scoped>
-.postdetails {
+.post-details {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
-.postdetails h3 {
+.post-details h3 {
   display: inline-block;
   position: relative;
   font-size: 30px;
@@ -45,7 +45,7 @@ export default {
   max-width: 400px;
   text-decoration: none;
 }
-.postdetails h3::before {
+.post-details h3::before {
   content: "";
   display: block;
   width: 100%;
