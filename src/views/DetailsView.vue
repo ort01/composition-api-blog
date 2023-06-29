@@ -4,6 +4,7 @@
     <h3>{{ post.title }}</h3>
     <p>{{ post.body }}</p>
     <div v-for="tag in post.tags" :key="tag" class="tags">#{{ tag }}</div>
+    <button @click="handleDelete" class="delete">delete</button>
   </div>
   <div v-else>
     <Spinner />
@@ -13,7 +14,8 @@
 <script>
 import getOnePost from "../composables/getOnePost";
 import Spinner from "../components/Spinner.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { projectFirestore } from "../firebase/config";
 
 export default {
   props: ["id"],
@@ -21,11 +23,18 @@ export default {
     Spinner,
   },
   setup(props) {
+    const router = useRouter();
     const route = useRoute();
 
     const { post, error, jsonData } = getOnePost(props.id); // (route.params.id)
     jsonData();
-    return { post, error };
+
+    const handleDelete = async () => {
+      await projectFirestore.collection("Posts").doc(props.id).delete();
+      router.push({ name: "Home" });
+    };
+
+    return { post, error, handleDelete };
   },
 };
 </script>
@@ -63,5 +72,17 @@ export default {
   display: inline-block;
   color: rgba(150, 93, 112, 0.484);
   font-weight: bold;
+}
+
+.delete {
+  border: none;
+  padding: 5px 10px;
+  background: rgb(233, 211, 219);
+  color: black;
+  border-radius: 5px;
+  font-size: 13px;
+  display: block;
+  margin: auto;
+  cursor: pointer;
 }
 </style>
