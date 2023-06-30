@@ -15,5 +15,6 @@ firebase.initializeApp(firebaseConfig)
 
 //init fireSTORE service
 const projectFirestore = firebase.firestore()
+const timeStamp = firebase.firestore.FieldValue.serverTimestamp //getting time info of each post
 
-export { projectFirestore }
+export { projectFirestore, timeStamp }

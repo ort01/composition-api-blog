@@ -7,7 +7,7 @@ const getPosts = () => {
 
     const jsonData = async () => {
         try {
-            const res = await projectFirestore.collection('Posts').get()
+            const res = await projectFirestore.collection('Posts').orderBy("createdAt", 'desc').get()
 
             posts.value = res.docs.map(doc => {
                 // console.log(doc.data());

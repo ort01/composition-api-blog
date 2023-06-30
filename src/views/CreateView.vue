@@ -10,7 +10,7 @@
       <div v-for="hashtag in tags" :key="hashtag" class="tags">
         #{{ hashtag }}
       </div>
-      <button>Add Post</button>
+      <button class="add-post">Add Post</button>
     </form>
   </div>
 </template>
@@ -18,7 +18,7 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { useRouter } from "vue-router";
-import { projectFirestore } from "../firebase/config";
+import { projectFirestore, timeStamp } from "../firebase/config";
 
 export default {
   setup() {
@@ -42,6 +42,7 @@ export default {
         title: title.value,
         body: body.value,
         tags: tags.value,
+        createdAt: timeStamp(),
       };
 
       // await fetch("http://localhost:3000/posts", {
@@ -120,7 +121,7 @@ textarea {
   color: rgb(150, 93, 112);
   font-weight: bold;
 }
-button {
+.add-post {
   border: none;
   display: block;
   margin: 40px auto 0;
@@ -131,5 +132,16 @@ button {
   font-weight: bold;
   background: rgb(202, 153, 169);
   color: rgb(255, 255, 255);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.add-post:hover {
+  background: rgb(199, 160, 174);
+  transform: translateY(-3px);
+}
+.add-post:active {
+  background: rgb(233, 206, 216);
+  transform: translateY(-1px);
 }
 </style>

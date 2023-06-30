@@ -17,6 +17,9 @@ const getOnePost = (id) => {
             //     post.value = data;
             // }
 
+
+            // ---------FIREBASE------------
+
             let res = await projectFirestore.collection('Posts').doc(id).get()
             // console.log(res.data());
             if (!res.exists) {

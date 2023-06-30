@@ -4,7 +4,7 @@
     <h3>{{ post.title }}</h3>
     <p>{{ post.body }}</p>
     <div v-for="tag in post.tags" :key="tag" class="tags">#{{ tag }}</div>
-    <button @click="handleDelete" class="delete">delete</button>
+    <button @click="handleDelete" class="delete">Delete</button>
   </div>
   <div v-else>
     <Spinner />
@@ -84,5 +84,15 @@ export default {
   display: block;
   margin: auto;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.delete:hover {
+  background: rgb(235, 189, 206);
+  transform: translateY(-3px);
+}
+.delete:active {
+  background: rgb(233, 206, 216);
+  transform: translateY(-1px);
 }
 </style>
